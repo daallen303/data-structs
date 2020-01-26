@@ -29,5 +29,7 @@ class Graph{
     void printVertexList();
     void printEdgeList();
     void printGraph();
+    void BFS();
+    void DFS();
 
 };

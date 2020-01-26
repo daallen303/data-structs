@@ -1,33 +1,37 @@
 #include "./graph.cpp"
-#include <initializer_list>
+#include <fstream>
 
 int main(int argc, char **argv)
 {
 
     Graph graph;
-    graph.insertVertex("a");
-    graph.insertVertex("b");
-    graph.insertVertex("c");
-    graph.insertVertex("d");
 
-    Edge edge1 = {0,1,10};
-    Edge edge2 = {2,3,20};
-    Edge edge3 = {0,3,192};
+    // read in vertices
+    std::ifstream fin;
+    std::vector<std::string> vertices;
+    std::string v;
+    Edge e;
 
-    graph.insertEdge(edge1);
-    graph.insertEdge(edge2);
-    graph.insertEdge(edge3);
+    fin.open("./vertices.txt");
+    while(!fin.eof())
+    {
+        fin >> v;
+        graph.insertVertex(v);
+    }
+    fin.close();
+
+    fin.open("./edges.txt");
+    while(!fin.eof())
+    {
+        fin >> e.startVertex >> e.endvertex >> e.weight;
+        graph.insertEdge(e);
+    }
+    fin.close();
 
     graph.printVertexList();
-
     graph.printEdgeList();
 
-    graph.deleteVertex("b");
-    graph.deleteEdge(edge3);
-
-    graph.printVertexList();
-
-    graph.printEdgeList();
-
+    graph.BFS();
+    graph.DFS();
 
 }
