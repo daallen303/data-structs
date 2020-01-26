@@ -36,13 +36,13 @@ void Graph::deleteVertex(std::string v)
     vertexList.erase(vertexList.begin()+ vertexIndex);
     edgeList.erase(edgeList.begin()+vertexIndex);
 }
-// void Graph::deleteEdge(Edge edge)
-// {
+void Graph::deleteEdge(Edge edge)
+{
 
-//     std::vector<Edge>::iterator start = edgeList[edge.startVertex].begin();
-//     std::vector<Edge>::iterator end = edgeList[edge.startVertex].end();
-//     edgeList[edge.startVertex].erase(std::remove(start,end, edge));
-// }
+    std::vector<Edge>::iterator start = edgeList[edge.startVertex].begin();
+    std::vector<Edge>::iterator end = edgeList[edge.startVertex].end();
+    edgeList[edge.startVertex].erase(std::remove(start,end, edge));
+}
 void Graph::printEdgeList()
 {
     for(auto &vertex : edgeList )

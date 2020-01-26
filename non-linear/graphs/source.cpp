@@ -23,7 +23,7 @@ int main(int argc, char **argv)
     graph.printEdgeList();
 
     graph.deleteVertex("b");
-    // graph.deleteEdge(edge3);
+    graph.deleteEdge(edge3);
 
     graph.printVertexList();
 

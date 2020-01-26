@@ -7,6 +7,10 @@
 
 struct Edge{
     int startVertex, endvertex, weight;
+    bool operator==(Edge edge)
+    {
+       return edge.endvertex == this->endvertex;
+    }
 };
 
 class Graph{
@@ -21,7 +25,7 @@ class Graph{
     void insertVertex(std::string);
     void insertEdge(Edge);
     void deleteVertex(std::string);
-    // void deleteEdge(Edge);
+    void deleteEdge(Edge);
     void printVertexList();
     void printEdgeList();
     void printGraph();
