@@ -8,7 +8,6 @@ int main(int argc, char **argv)
 
     // read in vertices
     std::ifstream fin;
-    std::vector<std::string> vertices;
     std::string v;
     Edge e;
 
