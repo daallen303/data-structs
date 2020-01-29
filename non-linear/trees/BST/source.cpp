@@ -18,12 +18,22 @@ int main()
         fin >> key;
     }
 
+    std::cout << std::endl << "inorder" << std::endl;
     bst.inorder(bst.root);
+    std::cout << std::endl << "preorder" << std::endl;
+    bst.preorder(bst.root);
+    std::cout << std::endl << "postorder" << std::endl;
+    bst.postorder(bst.root);
 
-    bst.deleteEm(16);
-    bst.deleteEm(0);
-    bst.deleteEm(20);
+    bst.deleteEm(bst.root, 35);
+
     
+    std::cout << std::endl << "inorder" << std::endl;
     bst.inorder(bst.root);
+    std::cout << std::endl << "preorder" << std::endl;
+    bst.preorder(bst.root);
+    std::cout << std::endl << "postorder" << std::endl;
+    bst.postorder(bst.root);
+    std::cout << std::endl;
 
 }

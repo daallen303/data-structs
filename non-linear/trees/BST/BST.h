@@ -15,12 +15,10 @@ class BST{
     ~BST();
     bool isEmpty();
     void insert(int key);
-    void deleteEm(int key);
-    void deleteLeaf(Node *child, Node *parent);
-    void deleteParentWithOneChild(Node *node, Node *parent);
-    void deleteParentWithTwoChildren(Node *node);
+    Node* findMin(Node *root);
+    Node* deleteEm(Node *root, int key);
     void inorder(Node *node);
-    void preorder();
-    void postorder();
+    void preorder(Node *node);
+    void postorder(Node *node);
 
 };

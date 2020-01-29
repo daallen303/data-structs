@@ -50,67 +50,42 @@ void BST::insert(int key)
 
 }
 
-void BST::deleteLeaf(Node *child, Node *parent)
+Node* BST::findMin(Node *root)
 {
-    if(parent-> left == child) parent->left == NULL;
-    else parent->right == NULL;
-    delete child;
+    if(root->left == NULL) return root;
+    else findMin(root);
 }
-// node is node to delete, parent is node to deletes parent
-void BST::deleteParentWithOneChild(Node *node, Node *parent)
+
+Node* BST::deleteEm(Node *root, int key)
 {
-    // parent key is greater, nodes subtree would be to left of parent
-    if(parent->key > node->key)
+    if(root == NULL) return NULL;
+    else if(root->key > key) root->left = deleteEm(root->left, key);
+    else if(root->key < key) root->right = deleteEm(root->right, key);
+
+    // else key == root->key
+
+    // parent with right child or no child
+    else if(root->left == NULL)
     {
-        if(node->left != NULL) parent->left = node->left;
-        else parent->left = node->right;
+        Node *temp = root->right; 
+        free(root);
+        return temp;
     }
+    // parent with left child
+    else if(root->right == NULL)
+    {
+        Node *temp = root->left; 
+        free(root); 
+        return temp;
+    }
+    // parent with two children
     else
     {
-        if(node->left != NULL) parent->right = node->right;
-        else parent->right = node->left;
+        Node *temp = findMin(root->right);
+        root->key = temp->key;
+        deleteEm(root->right, temp->key);
     }
-    delete node;
-}
-void BST::deleteParentWithTwoChildren(Node *node)
-{
-    Node *current, *parent;
-    current = node->right;
-    while( current->left != NULL )
-    {
-        parent = current;
-        current = current->left;
-    }
-    node->key = current->key;
-    
-    if(current->right != NULL) deleteParentWithOneChild(current, parent);
-    else deleteLeaf(current,parent);
-}
-
-void BST::deleteEm(int key)
-{
-    Node *current = root;
-    Node *parent;
-    while(current->left != NULL && current->right != NULL && current->key != key)
-    {
-        parent = current;
-        if(current->key < key) current = current->right;
-        else current = current->left; 
-    }
-
-    if(current->key != key )
-    {
-        std::cout << "key not found" << std::endl;
-        return;
-    }
-
-    if(current->left == NULL && current->right == NULL)
-    {
-        deleteLeaf(current, parent);
-    }
-    else if(current->left != NULL && current->right != NULL) deleteParentWithTwoChildren(current);
-    else deleteParentWithOneChild(current, parent);
-
+    return root;
 }
 
 void BST::inorder(Node *current)
@@ -118,4 +93,19 @@ void BST::inorder(Node *current)
     if(current->left != NULL) inorder(current->left);
     std::cout << current->key << " ";
     if(current->right != NULL) inorder(current->right);
+}
+
+void BST::preorder(Node *current)
+{
+    std::cout << current->key << " ";
+    if(current->left != NULL) preorder(current->left);
+    if(current->right != NULL) preorder(current->right);
+}
+
+void BST::postorder(Node *current)
+{
+    if(current->left != NULL) postorder(current->left);
+    if(current->right != NULL) postorder(current->right);
+    std::cout << current->key << " ";
+
 }
