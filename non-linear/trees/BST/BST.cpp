@@ -18,35 +18,18 @@ bool BST::isEmpty()
     return root == NULL;
 }
 
-void BST::insert(int key)
+Node* BST::insert(Node *root, int key)
 {
-    Node *new_node = new Node;
-    new_node->key = key;
-    new_node->left = NULL;
-    new_node->right = NULL;
-    
-    if(BST::isEmpty())
+    if(root == NULL)
     {
-        root = new_node;
-        return;
+        root = new Node;
+        root->key = key;
+        root->left = NULL;
+        root->right = NULL;
+        return root;
     }
-
-    Node *current = root;
-    Node *parent;
-    while(current!= NULL)
-    {
-        parent = current;
-        if(current->key < new_node->key)current = current->right;
-        else if(current->key > new_node->key) current = current->left;
-        else 
-        {
-            std::cout << "error, key is already in the tree" << std::endl;
-            return;
-        }
-    }
-
-        if(parent->key < new_node->key)parent->right = new_node;
-        else if(parent->key > new_node->key) parent->left = new_node;
+    else if(root->key > key) root->left = insert(root->left, key);
+    else root->right = insert(root->right, key);
 
 }
 

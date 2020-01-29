@@ -13,7 +13,7 @@ int main()
     fin >> key;
     while(!done)
     {
-        bst.insert(key);
+        bst.insert(bst.root, key);
         if(fin.eof()) break;
         fin >> key;
     }

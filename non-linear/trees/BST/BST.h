@@ -14,7 +14,7 @@ class BST{
     BST(int key);
     ~BST();
     bool isEmpty();
-    void insert(int key);
+    Node* insert(Node *root, int key);
     Node* findMin(Node *root);
     Node* deleteEm(Node *root, int key);
     void inorder(Node *node);
